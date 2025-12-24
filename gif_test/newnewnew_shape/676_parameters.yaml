@@ -1,0 +1,17 @@
+Lambda: 22.803
+T0: 293.15
+T1: 308.15
+c: 126.0
+e: 7131.2867422366
+experiment_id: 677
+material: uranium alloy (U96 Nb4)
+mph_name: thermal_design_06.mph
+p: 17700.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

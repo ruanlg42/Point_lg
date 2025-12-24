@@ -1,0 +1,17 @@
+Lambda: 0.158
+T0: 283.15
+T1: 303.15
+c: 1990.0
+e: 518.7904393876
+experiment_id: 2001
+material: oil (motor oil 10W30)
+mph_name: thermal_design_point_30hz.mph
+p: 856.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

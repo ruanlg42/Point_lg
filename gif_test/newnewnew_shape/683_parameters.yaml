@@ -1,0 +1,17 @@
+Lambda: 13.53
+T0: 293.15
+T1: 308.15
+c: 470.0
+e: 7234.3204933152
+experiment_id: 684
+material: steel stainless 316
+mph_name: thermal_design_03.mph
+p: 8230.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

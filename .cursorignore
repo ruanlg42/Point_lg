@@ -1,0 +1,9 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+/data_source
+/plot
+/results
+/results_16types
+/results_50hz_9types
+/gif_test
+/comparison_results
+

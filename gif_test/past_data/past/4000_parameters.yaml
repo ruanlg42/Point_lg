@@ -1,0 +1,17 @@
+Lambda: 7.113
+T0: 288.15
+T1: 308.15
+c: 862.0
+e: 3899.4726412683
+experiment_id: 4001
+material: potassium fluoride (KG|F)
+mph_name: thermal_design_01.mph
+p: 2480.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.02
+thickness: 0.3
+time: 5

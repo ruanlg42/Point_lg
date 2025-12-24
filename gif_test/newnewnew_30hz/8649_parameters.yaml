@@ -1,0 +1,17 @@
+Lambda: 123.01
+T0: 291.15
+T1: 306.15
+c: 201.0
+e: 15676.9448362875
+experiment_id: 8650
+material: molybdenum alloy (Mo70 W30)
+mph_name: thermal_design_point_30hz.mph
+p: 9940.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

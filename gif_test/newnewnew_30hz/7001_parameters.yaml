@@ -1,0 +1,17 @@
+Lambda: 35.146
+T0: 295.15
+T1: 310.15
+c: 732.0
+e: 9073.3670927611
+experiment_id: 7002
+material: aluminum nitride (AlN) (prs axis  98 d)
+mph_name: thermal_design_point_30hz.mph
+p: 3200.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

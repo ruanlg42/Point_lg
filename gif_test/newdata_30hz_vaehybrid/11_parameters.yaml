@@ -1,0 +1,17 @@
+Lambda: 0.009
+T0: 293.15
+T1: 318.15
+c: 247.0
+e: 0.9109587806
+experiment_id: 12
+material: krypton (gas)
+mph_name: thermal_design_point_30hz.mph
+p: 0.3733
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

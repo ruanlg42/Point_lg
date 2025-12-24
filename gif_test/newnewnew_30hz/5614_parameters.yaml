@@ -1,0 +1,17 @@
+Lambda: 17.364
+T0: 295.15
+T1: 308.15
+c: 203.0
+e: 6584.5403484222
+experiment_id: 5615
+material: uranium carbide (UC) (sintered 90d)
+mph_name: thermal_design_point_30hz.mph
+p: 12300.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

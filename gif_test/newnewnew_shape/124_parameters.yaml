@@ -1,0 +1,17 @@
+Lambda: 0.126
+T0: 293.15
+T1: 308.15
+c: 2343.0
+e: 518.3130135353
+experiment_id: 125
+material: polypropylene copolymer
+mph_name: thermal_design_04.mph
+p: 910.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

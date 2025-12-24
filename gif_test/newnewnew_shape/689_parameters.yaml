@@ -1,0 +1,17 @@
+Lambda: 20.92
+T0: 293.15
+T1: 308.15
+c: 502.0
+e: 7389.8286854297
+experiment_id: 690
+material: boride z cermet (ZrB2 81-87  MoSi2 13)
+mph_name: thermal_design_09.mph
+p: 5200.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

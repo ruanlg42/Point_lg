@@ -1,0 +1,17 @@
+Lambda: 13.389
+T0: 293.15
+T1: 308.15
+c: 502.0
+e: 7240.5779051123
+experiment_id: 685
+material: steel stainless 19-9dl
+mph_name: thermal_design_04.mph
+p: 7800.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

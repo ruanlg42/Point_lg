@@ -1,0 +1,17 @@
+Lambda: 0.14
+T0: 293.15
+T1: 308.15
+c: 2207.0
+e: 487.7649023864
+experiment_id: 114
+material: etbe (ethyl tert-butyl ether)
+mph_name: thermal_design_03.mph
+p: 770.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

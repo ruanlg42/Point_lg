@@ -1,0 +1,214 @@
+task:
+  name: null
+  prefix: AAA_Final_setup_dropout02_mamba3_transformer3
+  suffix: null
+data:
+  dataset_path: /home/ziwu/Newpython/lg_exp/Point_lg/data_source/output_5s_h10_h300_5s_30hz_9temp/thermal_design_point_nogif_30hz_packed/thermal_dataset_multipoint.pth
+  normalize_temp: true
+  use_log_e: true
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  batch_size: 4096
+  num_workers: 0
+  
+  # 时间序列参数配置
+  total_time: 5.0      # 总采样时间（秒）
+  delta_t: 0.03333333333333333       # 采样间隔（秒）
+  seq_len: 151        # 序列长度（可选，如果为null则自动计算: int(total_time/delta_t)+1）
+
+model:
+  type: timevae1d_hybrid_mamba_transformer_residual
+  transformer:
+    d_model: 256
+    nhead: 16
+    num_layers: 5
+    dim_feedforward: 1024
+    dropout: 0.2
+  cnn1d:
+    hidden_channels: 256
+    num_layers: 4
+    kernel_size: 5
+    dropout: 0.2
+  physics_cnn:
+    hidden_channels: 256
+    num_layers: 4
+    kernel_size: 5
+    dropout: 0.2
+  physics_transformer:
+    d_model: 256
+    nhead: 16
+    num_layers: 5
+    dim_feedforward: 1024
+    dropout: 0.2
+  enhanced_physics_transformer:
+    d_model: 256
+    nhead: 16
+    num_layers: 4
+    dim_feedforward: 1024
+    dropout: 0.2
+  mamba_physics:  # Mamba状态空间模型 (O(L)复杂度，250x faster)
+    d_model: 256
+    n_layers: 6       # Mamba层数
+    d_state: 16       # SSM状态维度 (通常8-32)
+    d_conv: 4         # 局部卷积宽度 (通常4)
+    expand: 2         # 扩展因子 (通常2)
+    dropout: 0.2
+  hybrid_mamba_transformer:  # 混合架构: Mamba + Transformer
+    d_model: 128
+    n_mamba: 2        # Mamba层数 (128底层，快速)
+    n_transformer: 2 # Transformer层数 (顶层，精细)
+    nhead: 4          # Transformer注意力头数
+    d_state: 16       # SSM状态维度
+    d_conv: 4         # 局部卷积宽度
+    expand: 2         # 扩展因子
+    dropout: 0.2
+  phys_tcn:  # Physics-Informed Temporal Convolutional Network (O(L)复杂度，快速稳定)
+    channels: 128     # TCN通道数 (推荐128)
+    num_layers: 8     # TCN层数 (推荐6)
+    dilations: null   # 空洞率序列 (默认[1,2,4,8,16,32]，null表示使用默认值)
+    kernel_size: 7    # 卷积核大小 (推荐7)
+    dropout: 0.2       # Dropout率 (推荐0.1)
+    activation: glu   # 激活函数类型 'glu' 或 'silu' (推荐'glu')
+  enhanced_mamba_physics:  # 增强版Mamba物理模型 (改进的特征融合和池化)
+    d_model: 256     # 模型维度
+    n_layers: 6      # Mamba层数 (推荐6)
+    d_state: 16      # SSM状态维度 (推荐16-32)
+    d_conv: 4        # 局部卷积宽度 (推荐4)
+    expand: 2         # 扩展因子 (推荐2)
+    dropout: 0.2     # Dropout率
+    use_multi_scale: true  # 是否使用多层级特征提取
+  timevae1d_mamba:  # 基于Mamba的时间序列VAE (变分自编码器)
+    C_in: 1          # 输入通道数 (默认1，原始温度序列)
+    latent_dim: 128   # 隐空间维度 (推荐32-128)
+    d_model: 256    # Mamba模型维度 (推荐128-256)
+    depth: 4         # Mamba层数 (推荐4-6)
+    d_state: 16      # SSM状态维度 (推荐16)
+    d_conv: 4        # 局部卷积宽度 (推荐4)
+    expand: 2        # 扩展因子 (推荐2)
+    decoder_base: 64 # 解码器基础通道数 (推荐64)
+  timevae1d_mamba_physics_decoder:
+    C_in: 1
+    latent_dim: 128
+    d_model: 256
+    depth: 4
+    d_state: 16
+    d_conv: 4
+    expand: 2
+    num_physics_basis: 32  # 物理基函数数量
+  timevae1d_transformer:  # 基于Transformer的时间序列VAE (变分自编码器)
+    C_in: 1          # 输入通道数 (默认1，原始温度序列)
+    latent_dim: 128   # 隐空间维度 (推荐32-128)
+    d_model: 128    # Transformer模型维度 (推荐128-256)
+    nhead: 8         # 注意力头数 (推荐8)
+    num_layers: 4    # Transformer层数 (推荐4-6)
+    dim_feedforward: 1024  # 前馈网络维度 (推荐512-1024)
+    dropout: 0.2     # Dropout率 (推荐0.1)
+    decoder_base: 64 # 解码器基础通道数 (推荐64)
+  timevae1d_hybrid_mamba_transformer:  # 基于Hybrid Mamba-Transformer的VAE (混合编码器)
+    C_in: 1          # 输入通道数 (默认1，原始温度序列)
+    latent_dim: 128   # 隐空间维度 (推荐64-128)
+    d_model: 256    # 模型维度 (推荐128-256)
+    n_mamba: 1    # Mamba层数 (底层，快速局部建模，推荐2-3)
+    n_transformer: 1 # Transformer层数 (顶层，全局精细化，推荐2-3)
+    nhead: 8         # Transformer注意力头数 (推荐8)
+    d_state: 16      # SSM状态维度 (推荐16)
+    d_conv: 4        # Mamba局部卷积宽度 (推荐4)
+    expand: 2        # Mamba扩展因子 (推荐2)
+    dropout: 0.2     # Dropout率 (推荐0.1-0.2)
+    decoder_base: 128 # 解码器基础通道数 (推荐64)
+  timevae1d_hybridmt_physics4channel:  # 基于Hybrid Mamba-Transformer的VAE，使用4通道物理特征输入
+    C_in: 4          # 输入通道数 (固定为4：T, Ṫ, t^(-1/2), Δt)
+    latent_dim: 128   # 隐空间维度 (推荐64-128)
+    d_model: 256     # 模型维度 (推荐128-256)
+    n_mamba: 2       # Mamba层数 (底层，快速局部建模，推荐2-3)
+    n_transformer: 2 # Transformer层数 (顶层，全局精细化，推荐2-3)
+    nhead: 8         # Transformer注意力头数 (推荐8)
+    d_state: 16      # SSM状态维度 (推荐16)
+    d_conv: 4        # Mamba局部卷积宽度 (推荐4)
+    expand: 2        # Mamba扩展因子 (推荐2)
+    dropout: 0.2     # Dropout率 (推荐0.1-0.2)
+    decoder_base: 64 # 解码器基础通道数 (推荐64)
+  timevae1d_stageaware:  # 时序分段感知VAE (Stage-Aware VAE) V2
+    C_in: 1          # 输入通道数 (固定为1，只做高斯滤波)
+    latent_dim: 64   # 隐空间维度 (推荐64-128)
+    d_model: 128     # 模型维度 (推荐128-256)
+    n_mamba: 2       # Mamba层数 (共享于两阶段，推荐2)
+    n_transformer: 2 # Transformer层数 (每阶段独立，推荐2)
+    nhead: 8         # Transformer注意力头数 (推荐8)
+    d_state: 16      # SSM状态维度 (推荐16)
+    d_conv: 4        # Mamba局部卷积宽度 (推荐4)
+    expand: 2        # Mamba扩展因子 (推荐2)
+    dropout: 0.2     # Dropout率 (推荐0.2)
+    decoder_base: 64 # 解码器基础通道数 (推荐64)
+    # V2改进: ✅位置编码 ✅Mamba残差连接 ✅Pre-LN规范化
+  timevae1d_hybrid_mamba_transformer_residual:  # 基于Hybrid Mamba-Transformer的VAE - 残差重建版本
+    C_in: 1          # 输入通道数 (默认1，原始温度序列)
+    latent_dim: 256  # 隐空间维度 (推荐64-128)
+    d_model: 256 # 模型维度 (推荐128-256)
+    n_mamba: 3    # Mamba层数 (底层，快速局部建模，推荐2-3)
+    n_transformer: 3 # Transformer层数 (顶层，全局精细化，推荐2-3)
+    nhead: 4         # Transformer注意力头数 (推荐8)
+    d_state: 16     # SSM状态维度 (推荐16)
+    d_conv: 4       # Mamba局部卷积宽度 (推荐4)
+    expand: 2        # Mamba扩展因子 (推荐2)
+    dropout: 0.2     # Dropout率 (推荐0.1-0.2)
+    decoder_base: 128 # 解码器基础通道数 (推荐64)
+    lambda_ic: 0.5   # 初值约束权重 (推荐0.1-1.0，控制残差初值接近0)
+  timevae1d_sst_encoder_residual:  # 基于NewSSTEncoder_Weighted的VAE - 残差重建版本
+    C_in: 1          # 输入通道数 (默认1，原始温度序列)
+    latent_dim: 64   # 隐空间维度 (推荐32-128)s
+    d_model: 128     # SST Encoder模型维度 (推荐128-256)
+    long_patch_len: 16  # Long分支patch长度 (推荐16)
+    long_stride: 8   # Long分支stride (推荐8)
+    short_patch_len: 16  # Short分支patch长度 (推荐16)
+    short_stride: 8  # Short分支stride (推荐8)
+    context_window: 151  # Short分支使用的近期窗口长度 (推荐151，即整个序列)
+    n_mamba: 2       # Mamba层数 (Long分支，推荐2-4)
+    n_transformer: 2 # Transformer层数 (Short分支，推荐2-4)
+    nhead: 8         # Transformer注意力头数 (推荐4-8)
+    d_state: 16      # SSM状态维度 (推荐16)
+    d_conv: 4        # Mamba局部卷积宽度 (推荐4)
+    expand: 2        # Mamba扩展因子 (推荐2)
+    dropout: 0.1     # Dropout率 (推荐0.1-0.2)
+    decoder_base: 64 # 解码器基础通道数 (推荐64)
+    use_router: true # 是否使用自适应路由器 (推荐true，动态调整长短期权重)
+    lambda_ic: 0.5   # 初值约束权重 (推荐0.1-1.0，控制残差初值接近0)
+
+
+    
+loss:
+  # 分段权重损失参数（用于加权MSE损失）
+  threshold_1: 10000.0  # 第一阈值（原始尺度），e < threshold_1 的样本权重为 low_weight
+  threshold_2: 30000.0  # 第二阈值（原始尺度），超过此值的样本权重为 high_weight，并受到额外惩罚
+  low_weight: 1      # e < threshold_1 的样本权重（高优先级，常见样本）2
+  mid_weight: 1       # threshold_1 <= e < threshold_2 的样本权重（中等优先级）0.5
+  high_weight: 1     # e >= threshold_2 的样本权重（低优先级，几乎不可能）0.1
+
+training:
+  epochs: 1000
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  device: cuda
+  seed: 42
+optimizer:
+  type: Adam
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+scheduler:
+  type: ReduceLROnPlateau
+  mode: min
+  factor: 0.8
+  patience: 10
+  min_lr: 1.0e-06
+save:
+  output_dir: results/model_result
+  save_best: true
+  save_last: true
+  save_interval: 200
+logging:
+  print_interval: 1
+  val_interval: 1
+  test_interval: 0

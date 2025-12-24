@@ -1,0 +1,17 @@
+Lambda: 46.024
+T0: 291.15
+T1: 306.15
+c: 460.0
+e: 12875.1405118546
+experiment_id: 8002
+material: steel free cutting eutectoid
+mph_name: thermal_design_point_30hz.mph
+p: 7830.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

@@ -1,0 +1,17 @@
+Lambda: 1.046
+T0: 293.15
+T1: 308.15
+c: 1255.0
+e: 2017.2910052841
+experiment_id: 3002
+material: beta-spodumene (Li2O.Al2O3.4SiO2) (tet)
+mph_name: thermal_design_point_30hz.mph
+p: 3100.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

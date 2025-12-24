@@ -1,0 +1,17 @@
+Lambda: 10.46
+T0: 283.15
+T1: 313.15
+c: 385.0
+e: 6000.1894970076
+experiment_id: 5262
+material: nickel alloy hastelloy c
+mph_name: thermal_design_point.mph
+p: 8940.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.02
+thickness: 0.3
+time: 5

@@ -1,0 +1,17 @@
+Lambda: 10.878
+T0: 291.15
+T1: 306.15
+c: 243.0
+e: 4798.2927526361
+experiment_id: 4681
+material: uranium oxide + zr (UO2 80 Zr 20)
+mph_name: thermal_design_point_30hz.mph
+p: 8710.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

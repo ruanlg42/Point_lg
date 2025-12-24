@@ -1,0 +1,17 @@
+Lambda: 0.272
+T0: 293.15
+T1: 308.15
+c: 1255.0
+e: 691.306010389
+experiment_id: 180
+material: silicone rubber (rtv 521 and 093-009)
+mph_name: thermal_design_09.mph
+p: 1400.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

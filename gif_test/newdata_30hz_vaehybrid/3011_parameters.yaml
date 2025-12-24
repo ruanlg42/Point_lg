@@ -1,0 +1,17 @@
+Lambda: 0.251
+T0: 283.15
+T1: 318.15
+c: 1004.0
+e: 739.4921771053
+experiment_id: 3012
+material: teflon
+mph_name: thermal_design_point_30hz.mph
+p: 2170.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

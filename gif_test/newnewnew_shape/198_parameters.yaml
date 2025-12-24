@@ -1,0 +1,17 @@
+Lambda: 0.293
+T0: 293.15
+T1: 308.15
+c: 1674.0
+e: 783.0086206422
+experiment_id: 199
+material: polyurethane rubber elastomer l-100
+mph_name: thermal_design_08.mph
+p: 1250.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5

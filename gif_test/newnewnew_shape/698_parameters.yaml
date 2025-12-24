@@ -1,0 +1,17 @@
+Lambda: 31.38
+T0: 293.15
+T1: 308.15
+c: 285.0
+e: 7624.3983369181
+experiment_id: 699
+material: zirconium
+mph_name: thermal_design_08.mph
+p: 6500.0
+px: 0
+py: 0
+sizex: 10
+sizey: 10
+sizez: 10
+step: 0.03333333333333333
+thickness: 0.3
+time: 5
